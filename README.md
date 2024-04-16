@@ -5,7 +5,7 @@ A lightweight npm package for generating 6-digit one-time passwords (OTP) for au
 ## Installation
 
 ```bash
-$ npm install generate-generate-one-time-password --save
+$ npm install generate-one-time-password --save
 ```
 
 ## Usage
