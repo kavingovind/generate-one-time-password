@@ -1,11 +1,15 @@
 # Generate One Time Password(OTP)
 
-A lightweight npm package for generating 6-digit one-time passwords (OTP) for authentication and verification purposes.
+A lightweight npm package for generating either 4 or 6 digits one-time passwords (OTP) for authentication and verification purposes.
 
 ## Installation
 
 ```bash
 $ npm install generate-one-time-password --save
+
+or
+
+$ yarn add generate-one-time-password
 ```
 
 ## Usage
@@ -13,10 +17,20 @@ $ npm install generate-one-time-password --save
 ```javascript
 import { generateOTP } from "generate-one-time-password";
 
-const otp = generateOTP();
-
+const otp = generateOTP(6);
 console.log(otp); // 490605
+
+const otpcode = generateOTP(4);
+console.log(otpcode); // 3075
 ```
+
+## API Reference
+
+Generate a random OTP number with either 4 or 6 digits.
+
+| Function Arguments | Default Value | Type         | Description                                                                                                  |
+| :----------------- | :------------ | :----------- | ------------------------------------------------------------------------------------------------------------ |
+| `4` or `6`         | `6`           | **Optional** | The number of digits in a one-time password (OTP). If no option is specified, the OTP will be 6 digits long. |
 
 ## License
 
