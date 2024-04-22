@@ -1,6 +1,6 @@
 {
   "name": "generate-one-time-password",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "description": "A lightweight npm package for generating either 4 or 6 digits one-time passwords (OTP) for authentication and verification purposes.",
   "main": "./src/generate.js",
