@@ -1,6 +1,6 @@
 {
   "name": "generate-one-time-password",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A lightweight npm package for generating one-time passwords (OTP) with numeric, alphabetic, or alphanumeric character sets for authentication and verification.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
