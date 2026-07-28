@@ -1,12 +1,29 @@
 {
   "name": "generate-one-time-password",
   "version": "1.0.0",
-  "type": "module",
-  "description": "A lightweight npm package for generating either 4 or 6 digits one-time passwords (OTP) for authentication and verification purposes.",
-  "main": "./src/generate.js",
-  "types": "./src/generate.d.ts",
+  "description": "A lightweight npm package for generating one-time passwords (OTP) with numeric, alphabetic, or alphanumeric character sets for authentication and verification.",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/generate-one-time-password.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c rollup.config.mjs && cp src/index.d.ts dist/index.d.ts",
+    "test": "npm run build && mocha test/**/*.test.js",
+    "prepublishOnly": "npm run build && mocha test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +42,14 @@
   "bugs": {
     "url": "https://github.com/kavingovind/generate-one-time-password/issues"
   },
-  "homepage": "https://github.com/kavingovind/generate-one-time-password#readme"
+  "homepage": "https://github.com/kavingovind/generate-one-time-password#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "mocha": "^10.8.2",
+    "rollup": "^4.28.1"
+  }
 }
