@@ -32,4 +32,4 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: mocha test/**/*.test.js
+        run: npx mocha test/**/*.test.js
