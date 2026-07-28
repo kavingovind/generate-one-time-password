@@ -9,12 +9,40 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npx mocha test/**/*.test.js
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  compatibility:
+    runs-on: ubuntu-latest
+    needs: build
 
     strategy:
       matrix:
-        node-version: [10, 12, 18, 20]
+        node-version: [10, 12, 18]
 
     steps:
       - name: Checkout
@@ -25,11 +53,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm install
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
 
-      - name: Build
-        run: npm run build
+      - name: Install test runner
+        run: npm install mocha@8 --no-save
 
-      - name: Test
+      - name: Test built output
         run: npx mocha test/**/*.test.js
